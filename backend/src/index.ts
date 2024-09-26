@@ -1,7 +1,8 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
+import userRouter from "./server/user/user.router"; // Đảm bảo đường dẫn đúng với file user.router
 
 dotenv.config();
 
@@ -25,6 +26,9 @@ mongoose
   .connect(mongoUri)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
+
+// Routes
+app.use("/api", userRouter);
 
 // Start server
 app.listen(PORT, () => {
