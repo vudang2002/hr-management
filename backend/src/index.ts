@@ -3,7 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import userRouter from "./server/user/user.router"; // Đảm bảo đường dẫn đúng với file user.router
-
+import LeaveApplication from "./server/leave_application/leave_application.router";
 dotenv.config();
 
 const app = express();
@@ -29,6 +29,7 @@ mongoose
 
 // Routes
 app.use("/api", userRouter);
+app.use("/api", LeaveApplication);
 
 // Start server
 app.listen(PORT, () => {
