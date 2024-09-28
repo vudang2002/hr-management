@@ -1,8 +1,11 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
-
+import userRouter from "./server/user/user.router";
+import leaveApplicationRouter from "./server/leave_application/leave_application.router";
+import employeeRouter from "./server/employee/employee.router";
+import payRollRouter from "./server/payroll/payroll.router";
 dotenv.config();
 
 const app = express();
@@ -25,6 +28,12 @@ mongoose
   .connect(mongoUri)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
+
+// Routes
+app.use("/api", userRouter);
+app.use("/api", leaveApplicationRouter);
+app.use("/api", employeeRouter);
+app.use("/api", payRollRouter);
 
 // Start server
 app.listen(PORT, () => {
