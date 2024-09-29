@@ -12,7 +12,9 @@ const LeaveApplicationDashboard = () => {
   useEffect(() => {
     const fetchLeaveApplications = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/leave-applications");
+        const response = await fetch(
+          "http://localhost:5000/api/leave-applications"
+        );
         const data = await response.json();
         setLeaveApplications(data);
       } catch (error) {
@@ -51,9 +53,7 @@ const LeaveApplicationDashboard = () => {
       if (response.ok) {
         const data = await response.json();
         setLeaveApplications(
-          leaveApplications.map((app) =>
-            app._id === data._id ? data : app
-          )
+          leaveApplications.map((app) => (app._id === data._id ? data : app))
         );
         setEditModalIsOpen(false);
       } else {
@@ -68,6 +68,8 @@ const LeaveApplicationDashboard = () => {
   };
 
   const handleDeleteLeaveApplication = async (leaveApplicationId) => {
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa không?");
+    if (!confirmDelete) return;
     try {
       const response = await fetch(
         `http://localhost:5000/api/leave-applications/${leaveApplicationId}`,
@@ -76,7 +78,9 @@ const LeaveApplicationDashboard = () => {
         }
       );
       if (response.ok) {
-        setLeaveApplications(leaveApplications.filter((app) => app._id !== leaveApplicationId));
+        setLeaveApplications(
+          leaveApplications.filter((app) => app._id !== leaveApplicationId)
+        );
         alert("Xóa đơn xin nghỉ thành công!");
       } else {
         const errorText = await response.text();
@@ -123,7 +127,7 @@ const LeaveApplicationDashboard = () => {
           <table className="min-w-full bg-white">
             <thead>
               <tr>
-                <th className="py-2 px-4 border-b text-black">Mã Nhân Viên</th>
+                <th className="py-2 px-4 border-b text-black">Tên Nhân Viên</th>
                 <th className="py-2 px-4 border-b text-black">Ngày Bắt Đầu</th>
                 <th className="py-2 px-4 border-b text-black">Ngày Kết Thúc</th>
                 <th className="py-2 px-4 border-b text-black">Lý Do</th>
@@ -135,20 +139,34 @@ const LeaveApplicationDashboard = () => {
               {leaveApplications.length > 0 ? (
                 leaveApplications.map((leaveApplication) => (
                   <tr key={leaveApplication._id}>
-                    <td className="py-2 px-4 border-b">{leaveApplication.employeeId}</td>
-                    <td className="py-2 px-4 border-b">{leaveApplication.startDate}</td>
-                    <td className="py-2 px-4 border-b">{leaveApplication.endDate}</td>
-                    <td className="py-2 px-4 border-b">{leaveApplication.reason}</td>
-                    <td className="py-2 px-4 border-b">{leaveApplication.leaveType}</td>
-                    <td className="py-2 px-4 border-b">
+                    <td className="py-2 px-4 border-b text-black">
+                      {leaveApplication.employeeId.username}
+                    </td>
+                    <td className="py-2 px-4 border-b text-black">
+                      {leaveApplication.startDate}
+                    </td>
+                    <td className="py-2 px-4 border-b text-black">
+                      {leaveApplication.endDate}
+                    </td>
+                    <td className="py-2 px-4 border-b text-black">
+                      {leaveApplication.reason}
+                    </td>
+                    <td className="py-2 px-4 border-b text-black">
+                      {leaveApplication.leaveType}
+                    </td>
+                    <td className="py-2 px-4 border-b text-black">
                       <button
-                        onClick={() => handleEditLeaveApplication(leaveApplication)}
+                        onClick={() =>
+                          handleEditLeaveApplication(leaveApplication)
+                        }
                         className="bg-yellow-500 text-white px-2 py-1 rounded-lg mr-2"
                       >
                         Sửa
                       </button>
                       <button
-                        onClick={() => handleDeleteLeaveApplication(leaveApplication._id)}
+                        onClick={() =>
+                          handleDeleteLeaveApplication(leaveApplication._id)
+                        }
                         className="bg-red-500 text-white px-2 py-1 rounded-lg"
                       >
                         Xóa

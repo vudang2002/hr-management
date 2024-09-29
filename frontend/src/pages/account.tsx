@@ -64,6 +64,8 @@ const UserManagement = () => {
   };
 
   const handleDeleteUser = async (userId) => {
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa không?");
+    if (!confirmDelete) return;
     try {
       const response = await fetch(
         `http://localhost:5000/api/users/${userId}`,
