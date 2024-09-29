@@ -66,6 +66,9 @@ const PersonnelDashboard = () => {
   };
 
   const handleDeleteEmployee = async (employeeId) => {
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xóa không?");
+    if (!confirmDelete) return;
+
     try {
       const response = await fetch(
         `http://localhost:5000/api/employees/${employeeId}`,

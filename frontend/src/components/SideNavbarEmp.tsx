@@ -12,7 +12,7 @@ import {
 import { CgProfile } from "react-icons/cg";
 import { FaRegComments } from "react-icons/fa";
 
-const SideNavbar: React.FC = () => {
+const SideNavbarEmp: React.FC = () => {
   return (
     <div>
       <Disclosure as="nav">
@@ -38,24 +38,19 @@ const SideNavbar: React.FC = () => {
               <NavItem
                 icon={MdOutlineSpaceDashboard}
                 label="Trang Chủ"
-                href="/admin"
+                href="/employee"
               />
-              <NavItem icon={CgProfile} label="Nhân Sự" href="/personnel" />
+              <NavItem icon={CgProfile} label="Hồ Sơ" href="/employee/profile" />
               <NavItem
                 icon={FaRegComments}
                 label="Đơn Xin Nghỉ"
-                href="/leave_application"
+                href="/employee/leave_application"
               />
-              <NavItem
-                icon={MdOutlineAnalytics}
-                label="Thống Kê"
-                href="/analytics"
-              />
-              <NavItem icon={CgProfile} label="Account" href="/account" />
+              
               <NavItem
                 icon={MdOutlineSettings}
-                label="Settings"
-                href="/setting"
+                label="Cài Đặt"
+                href="/employee/setting"
               />
             </div>
             {/* setting  */}
@@ -64,7 +59,7 @@ const SideNavbar: React.FC = () => {
             <div className="my-4">
               <NavItem
                 icon={MdOutlineLogout}
-                label="Logout"
+                label="Đăng Xuất"
                 href="/logout"
                 border
               />
@@ -105,4 +100,4 @@ const NavItem: React.FC<NavItemProps> = ({
   );
 };
 
-export default SideNavbar;
+export default SideNavbarEmp;

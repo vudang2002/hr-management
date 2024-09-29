@@ -1,13 +1,13 @@
-import Sidebar from "../components/Sidebar";
+import SideNavbarEmp from "@/components/SideNavbarEmp";
 
 const EmployeeDashboard = () => {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <Sidebar />
+      <SideNavbarEmp />
 
       {/* Main Content */}
-      <div className="flex-1 p-6 bg-gray-100">
+      <div className="flex-1 ml-64 p-6 bg-[#f0f4f8]">
         <h1 className="text-3xl font-bold">Hello, Employee!</h1>
 
         <div className="mt-6 bg-white p-6 rounded-lg shadow-md">
